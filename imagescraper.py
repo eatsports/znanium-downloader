@@ -8,16 +8,13 @@ from PIL import Image
 
 BOOKID = 'your book id'
 NO_OF_PAGES = '(int) pages in a book'
+SESSION_ID = 'your_id'
 
 
 def get_page_xml(page_no):
     book_id = BOOKID
     url = f"http://znanium.com/module.php?target=bookread2&book={book_id}&pageno={page_no}&currpageno={page_no}"
-    cookie = {'PHPSESSID': 'c2tsv5a60kl83poe5or28ajm7n',
-              'auth-checked': '1',
-              'auth_token': '46c3c758c2bc438e27acf2592c78d07e',
-              'token_sign': '79dc494def64c35e499089b5d321eeed',
-              'login-byname': '1'}
+    cookie = {'PHPSESSID': SESSION_ID}
     r = requests.get(url, cookies=cookie)
     content = r.content
     root = ElementTree.fromstring(content)
